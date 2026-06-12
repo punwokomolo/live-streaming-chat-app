@@ -1,0 +1,89 @@
+<?php
+
+session_start();
+include "config/db.php";
+
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM users WHERE email='$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+
+        $user = $result->fetch_assoc();
+
+        if (password_verify($password, $user['password'])) {
+
+            $_SESSION['user_id'] = $user['id'];
+
+            header("Location: dashboard.php");
+            exit();
+
+        } else {
+            $error = "Incorrect password";
+        }
+
+    } else {
+        $error = "User not found";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>Live Streaming Chat</h1>
+
+    <?php if(!empty($error)){ ?>
+        <p style="color:red;text-align:center;">
+            <?php echo $error; ?>
+        </p>
+    <?php } ?>
+
+    <form method="POST" class="login-form">
+
+        <input
+        type="email"
+        name="email"
+        placeholder="Enter Email"
+        required>
+
+        <input
+        type="password"
+        name="password"
+        placeholder="Enter Password"
+        required>
+
+        <button
+        type="submit"
+        class="login-btn">
+            Login
+        </button>
+
+    </form>
+
+    <div class="register-link">
+        Don't have an account?
+        <a href="register.php">
+            Register
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
