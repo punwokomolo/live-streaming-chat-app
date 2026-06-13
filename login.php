@@ -44,43 +44,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<div class="login-container">
+<div class="auth-container">
 
-    <h1>Live Streaming Chat</h1>
+    <h1>Login</h1>
 
-    <?php if(!empty($error)){ ?>
-        <p style="color:red;text-align:center;">
-            <?php echo $error; ?>
-        </p>
-    <?php } ?>
+    <form method="POST">
 
-    <form method="POST" class="login-form">
+        <input type="email" name="email" placeholder="Email" required>
 
-        <input
-        type="email"
-        name="email"
-        placeholder="Enter Email"
-        required>
+        <input type="password" name="password" placeholder="Password" required>
 
-        <input
-        type="password"
-        name="password"
-        placeholder="Enter Password"
-        required>
-
-        <button
-        type="submit"
-        class="login-btn">
-            Login
-        </button>
+        <button type="submit">Login</button>
 
     </form>
 
-    <div class="register-link">
-        Don't have an account?
-        <a href="register.php">
-            Register
-        </a>
+    <div class="auth-link">
+        <a href="register.php">Create account</a>
     </div>
 
 </div>

@@ -31,45 +31,26 @@ echo "Registration Successful";
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="auth-container">
 
-<div class="register-container">
+    <h1>Register</h1>
 
-    <h1>Create Account</h1>
+    <form method="POST">
 
-    <form action="" method="POST" class="register-form">
+        <input type="text" name="fullname" placeholder="Full Name" required>
 
-        <input
-        type="text"
-        name="fullname"
-        placeholder="Full Name"
-        required>
+        <input type="email" name="email" placeholder="Email" required>
 
-        <input
-        type="email"
-        name="email"
-        placeholder="Email Address"
-        required>
+        <input type="password" name="password" placeholder="Password" required>
 
-        <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required>
-
-        <button
-        type="submit"
-        class="register-btn">
-            Register
-        </button>
+        <button type="submit">Register</button>
 
     </form>
 
-    <div class="login-link">
-        Already have an account?
-        <a href="login.php">Login</a>
+    <div class="auth-link">
+        <a href="login.php">Back to login</a>
     </div>
 
 </div>
-
 </body>
 </html>
